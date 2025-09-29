@@ -6,11 +6,8 @@ const PORT = process.env.PORT || 3000;
 
 // Configuración de nuestra base de datos en PostgreSQL
 const pool = new Pool({
-  user: "u0_a258",
-  host: "localhost",
-  database: "jcstudiojkanime",
-  password: "tu_contraseña",
-  port: 5432
+  connectionString: process.env.DATABASE_URL,
+  ssl: { rejectUnauthorized: false }
 });
 
 // 🔹 Middleware para parsear JSON
@@ -107,5 +104,5 @@ app.get("/buscar", async (req, res) => {
 // Iniciar servidor
 // ========================
 app.listen(PORT, () => {
-  console.log('API corriendo en http://localhost:${PORT}`);
+  console.log(`API corriendo en http://localhost:${PORT}`);
 });
